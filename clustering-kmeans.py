@@ -20,6 +20,7 @@ while len(randIndexes) < clustersCount:
 centers = [data[i] for i in randIndexes]
 del randIndexes
 '''
+# For testing another method of centers initialization
 minX = float('inf')
 maxX = float('-inf')
 minY = float('inf')
