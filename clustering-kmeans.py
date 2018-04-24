@@ -1,7 +1,7 @@
 # encoding: utf-8
 import sys
 import utils
-from math import sqrt
+from math import sqrt, ceil
 from random import randint
 
 
@@ -19,6 +19,29 @@ while len(randIndexes) < clustersCount:
 	randIndexes |= {randint(0, len(data) - 1)}
 centers = [data[i] for i in randIndexes]
 del randIndexes
+'''
+minX = float('inf')
+maxX = float('-inf')
+minY = float('inf')
+maxY = float('-inf')
+for p in data:
+	if p[0] < minX:
+		minX = p[0]
+	if p[0] > maxX:
+		maxX = p[0]
+	if p[1] < minY:
+		minY = p[1]
+	if p[1] > maxY:
+		maxY = p[1]
+pointsRowCount = ceil(sqrt(clustersCount))
+pointsRowDeltaX = (maxX - minX) / (pointsRowCount + 1)
+pointsRowDeltaY = (maxY - minY) / (pointsRowCount + 1)
+centers = []
+for i in range(clustersCount):
+	x = minX + (pointsRowDeltaX * (i % pointsRowCount) + 1)
+	y = minY + (pointsRowDeltaY * (i / pointsRowCount) + 1)
+	centers.append((x, y))
+'''
 
 def distance(p1, p2):
 	dx = p2[0] - p1[0]
@@ -53,9 +76,12 @@ while centerDiff >= precision:
 				avgY += data[i][1]
 				countX += 1
 				countY += 1
-		avgX /= countX
-		avgY /= countY
-		newCenters.append((avgX, avgY))
+		if countX != 0:
+			avgX /= countX
+			avgY /= countY
+			newCenters.append((avgX, avgY))
+		else:
+			newCenters.append(centers[i])
 	# Calculating centers dislocation
 	maxCenterDiff = 0.0
 	for i in range(len(centers)):
