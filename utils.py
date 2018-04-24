@@ -11,7 +11,7 @@ def readinput():
 	except EOFError:
 		return None
 
-def input():
+def inputpoints():
 	points = []
 	inp = readinput()
 	while inp != None:
@@ -20,3 +20,9 @@ def input():
 		points.append(p)
 		inp = readinput()
 	return points
+
+def inputs():
+	line = readinput()
+	while line != None:
+		yield line
+		line = readinput()

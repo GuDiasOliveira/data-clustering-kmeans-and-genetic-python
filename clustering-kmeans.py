@@ -1,6 +1,6 @@
 # encoding: utf-8
 import sys
-import io
+import utils
 from math import sqrt
 from random import randint
 
@@ -10,7 +10,7 @@ clustersCount = int(sys.argv[1])
 if clustersCount <= 0:
 	print >> sys.stderr, 'Invalid input: The number of clusters must be positive and non-zero!'
 	exit(1)
-data = io.input()
+data = utils.inputpoints()
 precision = 1e-6
 
 # Calculating initial centers

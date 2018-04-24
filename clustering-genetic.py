@@ -3,7 +3,7 @@ import sys
 from random import shuffle
 from random import randint
 from math import sqrt
-import io
+import utils
 
 
 # Reading input and validating
@@ -11,7 +11,7 @@ clustersCount = int(sys.argv[1])
 if clustersCount <= 0:
 	print >> sys.stderr, 'Invalid input: The number of clusters must be positive and non-zero!'
 	exit(1)
-data = io.input()
+data = utils.inputpoints()
 popSize = 30
 numIterations = 150
 
